@@ -1,0 +1,114 @@
+.content {
+  font-family: Arial;
+}
+.content .header {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+}
+.content .header .address {
+  color: #101010;
+  font-size: 14px;
+}
+.content .header .add {
+  width: 70px;
+  height: 26px;
+  line-height: 26px;
+  margin-top: 7px;
+  border-radius: 5px;
+  color: #787878;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #BBBBBB;
+}
+.main .section {
+  height: 100px;
+  padding: 10px 10px;
+  color: #323232;
+  font-size: 14px;
+}
+.main .section .name {
+  width: 56px;
+  overflow: hidden;
+}
+.main .section .texts {
+  color: #969696;
+  font-size: 13px;
+  height: 40px;
+  line-height: 20px;
+  margin-top: 5px;
+}
+.main .section .handle {
+  height: 20px;
+  color: #969696;
+  font-size: 12px;
+  align-items: center;
+  line-height: 20px;
+}
+.main .section .handle .handle-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 18px;
+}
+.main .section .handle .handle-name {
+  vertical-align: middle;
+}
+.main .section .handle:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+.content2 {
+  font-family: Arial;
+}
+.content2 .weui-cells {
+  margin-top: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.content2 .weui-cells .weui-cell {
+  padding: 0px 15px;
+}
+.content2 .weui-cells .weui-cell .weui-cell__bd {
+  color: #323232;
+  font-size: 14px;
+  width: 70px;
+}
+.content2 .weui-cells .weui-cell .weui-cell__ft .inputs {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+}
+.select-area {
+  text-align: left;
+  color: #969696;
+  font-size: 13px;
+}
+.input-placeholder {
+  color: #969696;
+  font-family: arial;
+}
+input::-webkit-input-placeholder {
+  color: #969696;
+  font-family: arial;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #969696;
+  font-family: arial;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #969696;
+  font-family: arial;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #969696;
+  font-family: arial;
+}
+#save {
+  margin-top: 34px;
+}

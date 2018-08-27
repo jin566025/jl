@@ -1,0 +1,19 @@
+{
+  "address-edit.js": "address-edit-70b31f8e76.js",
+  "address.js": "address-5e8ed9a0a8.js",
+  "bill-add.js": "bill-add-584abd9c16.js",
+  "bill-open.js": "bill-open-70b31f8e76.js",
+  "bill.js": "bill-4073740b52.js",
+  "city-picker.min.js": "city-picker-1d3df316a6.min.js",
+  "common.js": "common-b3d28cc55a.js",
+  "cookie.js": "cookie-4f11262184.js",
+  "coupon-rule.js": "coupon-rule-6c6ed25eb0.js",
+  "coupon.js": "coupon-3b0fd90769.js",
+  "less.js": "less-9995b07d9c.js",
+  "person-info-change.js": "person-info-change-b365c56039.js",
+  "person-info.js": "person-info-2ed4ec3bdc.js",
+  "quality-complaint-hospital.js": "quality-complaint-hospital-56f6795bf8.js",
+  "quality-complaint.js": "quality-complaint-b0d1ff0ac1.js",
+  "scan-receive.js": "scan-receive-ae711362a9.js",
+  "upload.js": "upload-0f855124c5.js"
+}

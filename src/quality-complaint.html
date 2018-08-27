@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta http-equiv="Pragma" content="no-cache">
+		<title>质量投诉</title>
+		<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+		<link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="less/quality-complaint.css" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+	<body>
+		<div class="content">
+			
+			
+			<p class="title">投诉类型</p>
+			<div class="weui-cells">
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd flex1" id="picker3">请选择投诉类型</div>
+					<div class="weui-cell__ft tochange"  data-type="1">&nbsp;</div>
+				</a>
+			</div>
+			
+			
+			<p class="title">售货机选择</p>
+			<div class="weui-cells">
+				<a class="weui-cell weui-cell_access" href="javascript:;" onclick="window.location.href='quality-complaint-hospital.html'">
+					<div id="texts" class="weui-cell__bd">请选择售货机</div>
+					<div id="number" class="weui-cell__ft tochange flex1"  data-type="1">&nbsp;</div>
+				</a>
+			</div>
+			
+			<p class="title">投诉内容</p>
+			<div class="weui-cell">
+				<div class="weui-cell__bd">
+					<textarea id="info" class="weui-textarea" placeholder="补充详情以便商家更快帮您处理..." rows="5"></textarea>
+					<!-- <div class="weui-textarea-counter"><span>0</span>/200</div> -->
+				</div>
+			</div>
+			
+
+		
+			<div class="img-content" id="img-content">
+				<div class="line"></div>
+				<div class="weui-uploader__input-box" id="container">
+					<input id="postfiles" class="weui-uploader__input" type="file" accept="image/*"  multiple="">
+				</div>
+			</div>
+			
+			<div id="save" class="weui-btn_primary" style="margin-top: 30px;height: 40px;line-height: 40px;text-align: center;border-radius: 5px;font-size: 14px;color: #fff;">确定</div>
+			
+			
+			<div style="display: none;">
+				<div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
+				<pre id="console"></pre>
+				<form name=theform>
+					<input type="radio" name="myradio" value="local_name"/> 上传文件名字保持本地文件名字
+					<input type="radio" name="myradio" value="random_name" checked=true /> 上传文件名字是随机文件名
+					<br/>
+					上传到指定目录:<input type="text" id='dirname' value="machine/fb/" placeholder="如果不填，默认是上传到根目录" size=50>
+						
+				</form>
+			</div>
+			
+		</div>
+		
+		
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+		<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="lib/crypto1/crypto/crypto.js"></script>
+		<script type="text/javascript" src="lib/crypto1/hmac/hmac.js"></script>
+		<script type="text/javascript" src="lib/crypto1/sha1/sha1.js"></script>
+		<script type="text/javascript" src="lib/base64.js"></script>
+		<script type="text/javascript" src="lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+		<script type="text/javascript" src="lib/upload.js"></script>
+		<script src="js/quality-complaint.js"></script>
+	</body>
+</html>

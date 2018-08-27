@@ -1,0 +1,70 @@
+.content{
+    
+	font-family: Arial;padding: 0 10px;
+	.section{background: url(../img/coupon_bg.png) no-repeat center/contain;margin: 0 auto;}
+	.weui-flex{
+		margin-top: 8px;height:95px;width: 345px;
+		.main{
+			width: 220px;margin-left: 100px;
+			.name{font-size: 16px;height: 40px;line-height: 40px;}
+			.time,.number{font-size: 10px;}
+		}
+
+	}
+	
+	
+}
+.content2{
+	font-family: Arial;padding: 0 10px;
+	.top-content{
+		padding: 0 5px;
+		.top{
+			height: 64px;background-color:#ACDBE0 ;color:#fff;margin-top: 10px;border-radius: 5px;
+			.top-left{text-align: center;font-size: 18px;width: 80px;height:40px ;line-height:40px;border-right: 1px dotted #bbb;}
+			.top-right{
+				font-size: 14px;padding:0 10px;
+				.name,.time{overflow: hidden;text-overflow: ellipsis;}
+				.name{font-size: 14px;}
+				.time{font-size: 10px;}
+			}
+		}
+	}
+	
+	.container{
+		margin-top: 10px;
+		.section{
+			background-color:#85D0D3;border-radius:5px;color:#fff;
+			.title{font-size: 15px;}
+			.lists{
+				.list{
+					margin-top: 14px;
+					.list-left{
+						.circle{height:10px;width: 10px;border-radius: 50%;background-color: #fff;display: inline-block;}
+					}
+					.list-right{
+						padding-left: 10px;
+						.number{
+							font-size: 10px;
+							.number-left{flex: 1;}
+						}
+						.texts{font-size: 12px;margin-top:5px;}
+					}
+					
+				}
+			}
+			.tip{
+				.tips{font-size: 12px;height: 24px;line-height: 24px;}
+				.tips:before{content: " ";display: inline-block;width: 10px;height: 10px;border-radius: 50%;background-color: #fff ;margin-right: 5px;}
+			}
+		}
+		.section1{padding:35px 10px;}
+		.section2{padding:15px 10px;margin-top: 10px;}
+	}
+	.btn{width: 216px;height: 30px;line-height: 30px;color: #fff;font-size: 14px;background-color: #2DACB5 ;font-family: Microsoft Yahei;border-radius: 5px;margin: 0 auto;text-align: center;margin-top: 34px;}
+}
+@media screen and (max-width: 320px) {
+  .content .weui-flex{width: 280px;}
+  .content .weui-flex .main{margin-left:80px;width: 180px;}
+  .content .weui-flex .main .name{height: 26px;line-height:26px;font-size: 14px;}
+  .time,.number{font-size: 10px;}
+}

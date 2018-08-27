@@ -1,0 +1,154 @@
+.content .bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.content .windows {
+  width: 280px;
+  height: 500px;
+  background: url(../img/yhq.png) no-repeat center / contain;
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+}
+.content .windows .close {
+  position: absolute;
+  bottom: -20px;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+.content .windows .main {
+  margin-top: 280px;
+  text-align: center;
+  padding: 0 5px;
+}
+.content .windows .main .name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.content .windows .main .name .icon {
+  width: 6px;
+}
+.content .windows .main .name .texts {
+  margin: 0 10px;
+}
+.content .windows .main .clearfix {
+  font-size: 10px;
+  color: #fff;
+}
+.content .windows .main .clearfix .left {
+  width: 40%;
+  text-align: right;
+}
+.content .windows .main .clearfix .right {
+  width: 60%;
+  text-align: left;
+}
+.content .windows .main .tips,
+.content .windows .main .tips2 {
+  font-size: 10px;
+  color: #fff;
+}
+.content .windows .main .tips2 {
+  margin-top: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.content .windows .main .rule {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  background-color: #9DCCD2;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.content4 {
+  padding: 0 10px;
+  font-family: Arial;
+}
+.content4 .name {
+  color: #323232;
+  font-size: 18px;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+}
+.content4 .price {
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  position: relative;
+  margin-bottom: 20px;
+}
+.content4 .price .price1 {
+  color: #323232;
+  font-size: 36px;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+.content4 .price .price2 {
+  text-decoration: line-through;
+  color: #969696;
+  position: absolute;
+}
+.content4 .section {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+.content4 .section .section-l {
+  color: #323232;
+}
+.content4 .section .section-r {
+  color: #969696;
+  text-align: right;
+}
+.content4 .btn {
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #2DACB5;
+  font-size: 14px;
+  margin-top: 30px;
+  border-radius: 5px ;
+}
+.yh:before {
+  display: inline-block;
+  content: "优惠";
+  background-color: #E46D89;
+  color: #fff;
+  height: 16px;
+  line-height: 16px;
+  padding: 0 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.content4 .section .yh2 {
+  color: #E46D89;
+}

@@ -1,0 +1,204 @@
+.content {
+  font-family: Arial;
+  padding: 0 10px;
+}
+.content .title {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #323232;
+}
+.content .weui-cells {
+  margin-top: 0;
+  height: 40px;
+}
+.content .weui-cells .weui-cell {
+  padding: 0;
+  height: 40px;
+}
+.content .weui-cells .weui-cell .weui-cell__bd {
+  font-size: 14px;
+  color: #969696;
+}
+.content .weui-cells .weui-cell .weui-cell__ft {
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.content .weui-cells .weui-cell .weui-cell__ft input {
+  display: inline-block;
+  width: auto;
+}
+.content .weui-cells .weui-cell .weui-cell__ft .circle-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.content .weui-cell {
+  padding: 10px 0 0 0 ;
+}
+.content .weui-cells1 {
+  height: 60px;
+}
+.content .img-content {
+  position: relative;
+  margin-top: 20px;
+}
+.content .img-content .line {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: #DCDCDC;
+  top: -10px;
+  padding: 0 10px;
+  left: -10px;
+}
+.content .img-content .weui-uploader__input-box {
+  width: 100px;
+  height: 140px;
+  border: 1px dotted #d9d9d9;
+}
+.content .img-content .weui-uploader__input-box:before {
+  width: 6px;
+  height: 60px;
+  background-color: #A5A5A5;
+  border-radius: 6px;
+}
+.content .img-content .weui-uploader__input-box:after {
+  width: 60px;
+  height: 6px;
+  background-color: #A5A5A5;
+  border-radius: 6px;
+}
+.content .img-content:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.content #save {
+  margin-top: 30px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #fff;
+}
+.content .default {
+  background-color: #DCDCDC;
+}
+.content .sure {
+  background-color: #2DACB5;
+}
+.content2 {
+  width: 94%;
+  margin: 0 auto;
+  font-family: Arial;
+}
+.content2 .search {
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #BBBBBB;
+  margin: 10px 0;
+}
+.content2 .search .icon {
+  width: 24px;
+  text-align: center;
+}
+.content2 .search .icon .i-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+.content2 .search .search-input {
+  padding-left: 10px;
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  color: #323232;
+  font-size: 13px;
+}
+.content2 .lists .list {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #323232;
+}
+.content2 .lists2 .list {
+  height: 84px;
+  font-family: Arial;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.content2 .lists2 .list .name {
+  color: #323232;
+  font-size: 14px;
+  width: 120px;
+  height: 24px;
+  line-height: 24px;
+}
+.content2 .lists2 .list .number {
+  font-size: 13px;
+  color: #969696;
+  height: 24px;
+  line-height: 24px;
+}
+.content2 .lists2 .list .desc {
+  font-size: 12px;
+  color: #101010;
+  margin-top: 10px;
+}
+.weui-textarea {
+  font-size: 13px;
+  color: #969696;
+  font-family: Arial;
+}
+.textarea-placeholder {
+  color: #969696;
+  font-family: arial;
+}
+textarea::-webkit-input-placeholder {
+  color: #969696;
+  font-family: arial;
+}
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #969696;
+  font-family: arial;
+}
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #969696;
+  font-family: arial;
+}
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #969696;
+  font-family: arial;
+}
+.input-placeholder {
+  color: #323232;
+  font-family: arial;
+}
+input::-webkit-input-placeholder {
+  color: #323232;
+  font-family: arial;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #323232;
+  font-family: arial;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #323232;
+  font-family: arial;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #323232;
+  font-family: arial;
+}

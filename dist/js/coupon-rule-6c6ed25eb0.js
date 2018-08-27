@@ -1,0 +1,1 @@
+$(function(){var o=window.location.href.split("=")[1];console.log(o),common.couponInfo(o)});

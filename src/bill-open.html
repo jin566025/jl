@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta http-equiv="Pragma" content="no-cache">
+		<title>开发票</title>
+		<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+		<link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="less/bill.css" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+	<body>
+		<div class="content2">
+			<p  class="title">发票详情</p>
+			<div class="weui-cells">
+			  <div class="weui-cell">
+				<div class="weui-cell__bd  initial-flex xing">抬头类型</div>
+				<div class="weui-cell__ft">
+					<div class="flex-box type">
+						<div class="types flex1 types-active">企业单位</div>
+						<div class="types flex1">个人/非企业单位</div>
+					</div>
+				</div>
+			  </div>
+			  
+			  <div class="weui-cell">
+				  <div class="weui-cell__bd  initial-flex xing">发票抬头</div>
+				  <div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写发票抬头" /></div>
+			  </div>
+			  <div class="weui-cell qy">
+			  	<div class="weui-cell__bd  initial-flex xing">税号</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写纳税人识别号" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex xing">发票内容</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" value="*医疗器械*" readonly="readonly" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex xing">发票金额</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" value="16.00元" readonly="readonly" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex">备注说明</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写备注说明" /></div>
+			  </div>
+			  <div class="weui-cell">
+				  <div class="weui-cell__bd  initial-flex">地址</div>
+				  <div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写地址" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex">电话</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写电话" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex">开户行</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写开户行" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex">账户</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写账户" /></div>
+			  </div>
+			
+			  <p  class="title">接收方式</p>
+			  <div class="weui-cell">
+				  <div class="weui-cell__bd  initial-flex xing">收件人</div>
+				  <div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写收件人" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex xing">联系电话</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写联系电话" /></div>
+			  </div>
+			  <div class="weui-cell address">
+			  	<div class="weui-cell__bd  initial-flex xing">所在地区</div>
+				<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请选择地区"  id='city-picker'  readonly="readonly" /></div>
+			  </div>
+			  <div class="weui-cell">
+			  	<div class="weui-cell__bd  initial-flex xing">详细地址</div>
+			  	<div class="weui-cell__ft"><input class="inputs" type="text" placeholder="请填写详细地址" /></div>
+			  </div>
+			  
+			  <p  class="title"><img class="clock" src="img/clock.png" />邮费自理，货到付款</p>
+			  
+			  <div class="btn box-sizing">提交</div>
+			</div>
+		</div>
+		
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+		<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/city-picker.min.js"></script>
+		<script src="js/bill.js"></script>
+		<script src="js/bill-open.js"></script>
+	</body>
+</html>

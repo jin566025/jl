@@ -1,0 +1,75 @@
+.content {
+  padding: 0 10px;
+  font-family: Arial;
+}
+.content .weui-cells {
+  margin-top: 0;
+  height: 40px;
+  border-bottom: 1px solid gainsboro;
+}
+.content .weui-cells .weui-cell .weui-cell__bd {
+  font-size: 14px;
+  color: #323232;
+  width: 60px;
+}
+.content .weui-cells .weui-cell .weui-cell__ft {
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.content .weui-cells .weui-cell .weui-cell__ft input {
+  display: inline-block;
+  width: auto;
+}
+.content .weui-cells .weui-cell .weui-cell__ft .circle-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.content .weui-cells:last-child {
+  border-bottom: none;
+}
+.content .weui-cells1 {
+  height: 60px;
+}
+.content2 {
+  font-family: Arial;
+  width: 94%;
+  margin: 0 auto;
+}
+.content2 .left_input {
+  flex: 1;
+}
+.content2 .left_close {
+  width: 18px;
+  height: 18px;
+}
+.content2 .weui-flex {
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+  color: #323232;
+}
+.content2 .weui-flex .left_input input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+.content2 .weui-flex .right_close .close {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+.content2 .save {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #2DACB5;
+}
