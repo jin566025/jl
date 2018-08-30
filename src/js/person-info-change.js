@@ -17,7 +17,7 @@ $(function(){
 			params.addr = val
 		}else if(type==3){
 			var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
-			if (myreg.test(str)) {
+			if (myreg.test(val)) {
 				params.phone = val
 			}else{
 				$.toast("请输入正确的手机号码", "cancel");

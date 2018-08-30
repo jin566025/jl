@@ -8,8 +8,11 @@ $(function(){
 		
 		
 		var jlVmPk = $(this).data("id");
-		var vmNm = $(this).find(".vmNm").text();
-		var info = {};
+		var vmNm = $(this).find(".name").text();
+		var info = sessionStorage.getItem("info");
+		
+		info ? info=JSON.parse(info):info={};
+		
 		info.jlVmPk = jlVmPk;
 		info.vmNm = vmNm;
 		info = JSON.stringify(info);

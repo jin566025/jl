@@ -40,16 +40,22 @@ $(function(){
 			$.toast("请选择投诉类型", "forbidden");
 			return false;
 		}
-		var vmNm = $("#texts").text();
-		if(!vmNm){
-			$.toast("请选择售货机名称", "forbidden");
-		}
+		
 		
 		if(!_info){
 			$.toast("请填写投诉信息", "forbidden");
+			return false;
 		}
 		var jlVmPk = $("#number").text();
-
+		if(!jlVmPk){
+			$.toast("请选择售货机名称", "forbidden");
+			return false;
+		}
+		var vmNm = $("#texts").text();
+		if(vmNm=="请选择售货机"){
+			$.toast("请选择售货机名称", "forbidden");
+			return false;
+		}
 		
 		var jlCsrPk = localStorage.getItem("jlCsrPk");
 		var userInfo  =localStorage.getItem("userInfo");
@@ -85,7 +91,18 @@ $(function(){
 	  onChange:function(e){
 		  var val = e.value[0];
 		  $("#picker3").html(val);
-			
+			var info = sessionStorage.getItem("info");
+			if(info){
+				info = JSON.parse(info);
+				info.catNm = val;
+				info = JSON.stringify(info);
+				sessionStorage.setItem("info",info)
+			}else{
+				var _info = {};
+				_info.catNm = val;
+				_info = JSON.stringify(_info);
+				sessionStorage.setItem("info",_info)
+			}
 	  }
 	});
 	
@@ -98,8 +115,10 @@ var init = {
 			info = JSON.parse(info);
 			var jlVmPk = info.jlVmPk;
 			var vmNm = info.vmNm;
-			$("#texts").html(vmNm);
-			$("#number").html(jlVmPk);
+			var catNm = info.catNm;
+			if(vmNm) $("#texts").html(vmNm);
+			if(jlVmPk) $("#number").html(jlVmPk);
+			$("#picker3").html(catNm);
 		}
 	}
 }

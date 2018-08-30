@@ -4,6 +4,58 @@ $(function() {
 });
 
 var common = {
+	vmCoupon:function(params){
+		$.ajax({
+			type:"post",
+			url:URL+"pay/weixin/vmCoupon",
+			dataType:"json",
+			data:params,
+			success:function(res){
+				console.log(res)
+				if(res.status==200){
+					var payFee = res.data.payFee;
+					var price3 = params.totalFee-payFee;
+					price3 = price3*0.01;
+					payFee = payFee*0.01;
+					$("#price1").html(payFee.toFixed(2));
+					$("#price3").html(price3.toFixed(2));
+					sessionStorage.setItem("coupSn",res.data.coupSn);
+				}
+			}
+		})
+	},
+	createOrder:function(params){
+		$.ajax({
+			type:"post",
+			url:URL+"pay/weixin/createOrder",
+			dataType:"json",
+			data:params,
+			success:function(data){
+				console.log(data)
+				if(data.status==200){
+					var datas = data.data;
+					WeixinJSBridge.invoke(
+						'getBrandWCPayRequest', {
+							"appId":datas.appId,               //公众号名称，由商户传入     
+							"timeStamp":datas.timeStamp,       //时间戳，自1970年以来的秒数     
+							"nonceStr":datas.nonceStr,         //随机串     
+							"package":datas.packageValue,     
+							"signType":datas.signType,         //微信签名方式：     
+							"paySign":datas.paySign               //微信签名 
+						},
+						function(res){
+							console.log(res)
+							if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+								
+							}else{
+								
+							}
+						}
+					); 
+				}
+			}
+		})
+	},
 // 	init:function(){
 // 		var that = this;
 // 		that.getOpenid();
@@ -34,9 +86,6 @@ var common = {
 									async:false,
 									dataType:"json",
 									success:function(res2){
-										console.log(data)
-										console.log(res)
-										console.log(res2)
 										$("#jlHospNm").html(res.data.jlHospNm);
 										$("#dateLimit").html(data.data.dateLimit)
 										
@@ -89,7 +138,6 @@ var common = {
 			url:URL+"jl/fb/wxedit",
 			contentType:"application/json",
 			success:function(data){
-				console.log("aaa")
 				console.log(data)
 				if(data.status==200){
 					$.toast("提交成功");
@@ -102,6 +150,15 @@ var common = {
 		})
 	},
 	coupList:function(jlCsrPk){
+		var loading = '<div class="weui-loadmore">'+
+										'<i class="weui-loading"></i>'+
+										'<span class="weui-loadmore__tips">正在加载</span>'+
+									'</div>';
+		var nodata = '<div class="weui-loadmore weui-loadmore_line">'+
+										'<span class="weui-loadmore__tips">暂无数据</span>'+
+									'</div>';
+									
+		$(".content").html(loading)
 		$.ajax({
 			type:"get",
 			url:URL+"jl/coup/wxcoupList?jlCsrPk="+jlCsrPk,
@@ -109,17 +166,23 @@ var common = {
 			success:function(data){
 				if(data.status==200){
 					var lists = data.data;
-					for(var i=0;i<lists.length;i++){
-						var html = '<div class="weui-flex section align-center" data-pk="'+lists[i].jlCoupVo.jlCoupPk+'">'+
-										'<div class="main">'+
-											'<p class="name">'+lists[i].jlDrVo.jlHospNm+'</p>'+
-											'<p class="time">有效期至:'+lists[i].jlCoupVo.dateLimit+'</p>'+
-											'<p class="number">NO:'+lists[i].jlCoupVo.jlCoupPk+'</p>'+
-										'</div>'+
-									'</div>';
-						$(".content").append(html);
-					}
-					
+					if(lists){
+						$(".content").html("")
+						for(var i=0;i<lists.length;i++){
+							var html = '<div class="weui-flex section align-center" data-pk="'+lists[i].jlCoupVo.jlCoupPk+'">'+
+											'<div class="main">'+
+												'<p class="name">'+lists[i].jlDrVo.jlHospNm+'</p>'+
+												'<p class="time">有效期至:'+lists[i].jlCoupVo.dateLimit+'</p>'+
+												'<p class="number">NO:'+lists[i].jlCoupVo.jlCoupPk+'</p>'+
+											'</div>'+
+										'</div>';
+							$(".content").append(html);
+						}
+					}else{
+						$(".content").html(nodata)
+					}	
+				}else{
+					$(".content").html(nodata)
 				}
 			}
 		})
@@ -131,6 +194,9 @@ var common = {
 		}else{
 			_url = URL+"jl/hosp/wxlist"
 		}
+		var nodata = '<div class="weui-loadmore weui-loadmore_line">'+
+									'<span class="weui-loadmore__tips">暂无数据</span>'+
+									'</div>';
 		$.ajax({
 			type:"get",
 			url:_url,
@@ -141,10 +207,7 @@ var common = {
 					$("#lists").html("")
 					var lists = data.data.items;
 					if(!lists){
-						var html = '<div class="weui-loadmore weui-loadmore_line">'+
-									'<span class="weui-loadmore__tips">暂无数据</span>'+
-									'</div>';
-						$("#lists").html(html)			
+						$("#lists").html(nodata)			
 					}else{
 						for(var i=0;i<lists.length;i++){
 							var html = '<div class="list" data-id="'+lists[i].jlHospPk+'">'+
@@ -155,10 +218,7 @@ var common = {
 					}
 					
 				}else{
-					var html = '<div class="weui-loadmore weui-loadmore_line">'+
-								'<span class="weui-loadmore__tips">暂无数据</span>'+
-								'</div>';
-					$("#lists").html(html)		
+					$("#lists").html(nodata)		
 				}
 			}
 		})
@@ -213,6 +273,9 @@ var common = {
 		}else{
 			_url = URL+"jl/vm/wxlist"
 		}
+		var nodata = '<div class="weui-loadmore weui-loadmore_line">'+
+									  '<span class="weui-loadmore__tips">暂无数据</span>'+
+									'</div>';
 		$.ajax({
 			type:"get",
 			url:_url,
@@ -223,18 +286,14 @@ var common = {
 					$("#lists").html("")
 					var lists = data.data.items;
 					if(!lists){
-						var html = '<div class="weui-loadmore weui-loadmore_line">'+
-									  '<span class="weui-loadmore__tips">暂无数据</span>'+
-									'</div>';
-						$("#lists").html(html)			
+						$("#lists").html(nodata)			
 					}else{
 						for(var i=0;i<lists.length;i++){
 							var html = '<div class="list"  data-id="'+lists[i].jlVmPk+'">'+
 											'<div class="weui-flex">'+
 												'<div class="weui-flex__item initial-flex name" style="margin-right:30px">'+lists[i].dep+'</div>'+
-												'<div class="weui-flex__item number">NO：'+lists[i].vmSn+'</div>'+
+												'<div class="weui-flex__item number">NO：'+lists[i].jlVmPk+'</div>'+
 											'</div>'+
-											'<p class="vmNm hide" style="display:none">'+lists[i].vmNm+'</p>'+
 											'<div class="desc">'+lists[i].addrDet+'</div>'+
 										'</div>';
 		
@@ -243,10 +302,7 @@ var common = {
 					}
 					
 				}else{
-					var html = '<div class="weui-loadmore weui-loadmore_line">'+
-								'<span class="weui-loadmore__tips">暂无数据</span>'+
-								'</div>';
-					$("#lists").html(html)			
+					$("#lists").html(nodata)			
 				}
 			}
 		})
@@ -335,9 +391,10 @@ var common = {
 			}
 		}
 	},
-	getCode:function(){
+	getCode:function(callback){
 		var openid = localStorage.getItem("openid");
 		var that = this;
+		
 		if(openid){
 			var userInfo = localStorage.getItem("userInfo");
 			userInfo = JSON.parse(userInfo);
@@ -377,8 +434,12 @@ var common = {
 						that.showData(userInfo);
 						userInfo = JSON.stringify(userInfo);
 						localStorage.setItem("userInfo",userInfo);
-						//localStorage.setItem("token",data.data.token);
-						//document.cookie = "machine-token="+data.data.token;
+						localStorage.setItem("token",data.data.token);
+						//that.set("machine-token",data.data.token,30)
+						if(callback){
+							callback()
+						}
+						
 					}else if(data.status==400){
 						localStorage.removeItem("hasLogin");
 						location.reload();
@@ -387,6 +448,32 @@ var common = {
 				}
 			});
 		}	
+	},
+	/**
+	* 添加cookie值
+	* @param name: cookie的name
+	* @param value: cookie的值
+	* @param hours: cookie失效时间，为空/0则将在浏览器关闭后失效
+	*/
+	addCookie: function(name, value, hours){
+		var cookieStr = name + "=" + escape(value);
+		// 同一个应用服务器下共享cookie
+		cookieStr += "; path=/";
+		//为0时不设定过期时间，浏览器关闭时cookie自动消失
+		if(hours && hours > 0){
+			var date = new Date(),
+			ms = hours*3600*1000;
+			date.setTime(date.getTime() + ms);
+			cookieStr += "; expires=" + date.toGMTString();
+		}
+		document.cookie = cookieStr;
+	},
+	set:function (key, val, time) {//设置cookie方法
+		var date = new Date(); //获取当前时间
+		var expiresDays = time;  //将date设置为n天以后的时间
+		date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000); //格式化为cookie识别的时间
+		// document.cookie = key + "=" + val + ";expires=" + date.toGMTString();  //设置cookie
+		document.cookie = key + "=" + val + ";expires=" + date.toGMTString()+ "; path=/";  //设置cookie
 	},
 	showData:function(data){
 		$("#headImgUrl").attr("src",data.headImgUrl);
