@@ -4,6 +4,7 @@ $(function(){
 	common.couponInfo(pk);
 	
 	$(".btn").click(function(){
-		window.location.href = "scan-receive.html?pk="+pk
+		// window.location.href = "scan-receive.html?pk="+pk
+		window.location.href = "scan.html"
 	})
 })

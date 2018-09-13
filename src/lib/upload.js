@@ -178,8 +178,13 @@ var uploader = new plupload.Uploader({
 		FileUploaded: function(up, file, info) {
 			var my_url = "https://jloss.jianlangcn.com/"+g_object_name
 			var img = '<img class="weui-uploader__input-box catImg" src='+my_url+' />';
+			var catImg = $(".catImg");
+			
+			if(catImg.length>3 || catImg.length==3){
+				$("#img-content").find(".catImg").eq(2).remove();
+				console.log($("#img-content").find(".catImg").eq(2))
+			}
 			$("#img-content").prepend(img);
-			console.log(g_object_name)
             if (info.status == 200)
             {
                 document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'upload to oss success, object name:' + get_uploaded_object_name(file.name);

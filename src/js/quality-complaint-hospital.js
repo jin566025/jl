@@ -13,8 +13,13 @@ $(function(){
 	$('#search').on('input',function(){
 		
 		var search_val = $("#search").val()
-		var _params = {"w":[{"k":"hospNm","v":search_val,"m":"LK"}],"o":[],"p":{"n":1,"s":10}},
 		
+		var _params;
+		if(search_val){
+			_params = {"w":[{"k":"hospNm","v":search_val,"m":"LK"}],"o":[],"p":{"n":1,"s":10}};
+		}else{
+			_params = {};
+		}
 		_params = JSON.stringify(_params);
 		_params = encodeURI(_params);
 		

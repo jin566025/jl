@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/common.css" />
 	</head>
 	<body>
-		<div class="content">
+		<div class="content" id="copyBT"  data-clipboard-text="517366278">
 			<div class="weui-cells weui-cells1">
 			  <div class="weui-cell">
 					<div class="weui-cell__bd">头像</div>
@@ -68,11 +68,48 @@
 				</a>
 			</div>
 		</div>
-
+		
+		
+		<div class="uuid-code" id="copycontent" style="display: none;">517366278</div>
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 		<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+		<script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.js"></script>
 		<script src="js/common.js"></script>
 		<script src="js/person-info.js"></script>
+<script>
+	function stopDrop() {
+ 
+    var lastY;//最后一次y坐标点
+ 
+    $(document.body).on('touchstart', function(event) {
+ 
+        lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+ 
+    });
+ 
+    $(document.body).on('touchmove', function(event) {
+ 
+        var y = event.originalEvent.changedTouches[0].clientY;
+ 
+        var st = $(this).scrollTop(); //滚动条高度  
+ 
+        if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+ 
+            lastY = y;
+ 
+            event.preventDefault();
+ 
+        }
+ 
+        lastY = y;
+ 
+ 
+ 
+    });
+ 
+}
+stopDrop()
+</script>
 	</body>
 </html>

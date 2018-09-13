@@ -128,6 +128,8 @@
   color: #323232;
 }
 .content2 .lists2 .list {
+	padding-top: 10px;
+	border-top: 1px solid gainsboro;
   font-family: Arial;
   margin-top: 20px;
   overflow: hidden;

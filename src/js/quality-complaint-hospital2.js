@@ -22,9 +22,13 @@ $(function(){
 	
 	$('#search').on('input',function(){
 		var id = window.location.href.split("=")[1];
-		var search_val = $("#search").val()
-		var _params = {"w":[{"k":"dep","v":search_val,"m":"LK"},{"k":"jlHospPk","v":id,"m":"LK"}],"o":[],"p":{"n":1,"s":10}}
-		
+		var search_val = $("#search").val();
+		var _params;
+		if(search_val){
+			_params = {"w":[{"k":"depCd","v":search_val,"m":"LK"},{"k":"jlHospPk","v":id,"m":"LK"}],"o":[],"p":{"n":1,"s":10}}
+		}else{
+			_params = {"w":[{"k":"jlHospPk","v":id,"m":"LK"}],"o":[],"p":{"n":1,"s":10}};
+		}
 		_params = JSON.stringify(_params);
 		_params = encodeURI(_params);
 		

@@ -12,29 +12,50 @@
 		<link href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="less/coupon.css" />
 		<link rel="stylesheet" href="css/common.css" />
-	</head>
-	<body>
-		<div class="content">
+		<style>
 			
-			<!-- 
-			<div class="weui-flex section align-center">
+			.content .section{position: relative;overflow: hidden;background: transparent;}
+			.remove{height: 95px;line-height: 95px;width: 60px;text-align: center;background-color: red;color: #fff;font-size: 14px;;right: -60px;position: absolute;z-index: 3;}
+			.main:before{content: "优惠券";display: block;height:65px;position: absolute;left: 0;line-height: 65px;width: 80px;text-align: center;top: 15px;border-right: 1px dashed #2DACB5;}
+			.section:after,.section:before{content: " ";display: block;position: absolute;left: 70px;width: 20px;height: 20px;border: 1px solid #2DACB5;background-color: #fff;transform: rotate(45deg);z-index: 2;}
+			.section:before{top: -16px;}
+			.section:after{bottom: -16px;}
+			.borders{border: 1px solid #2DACB5;background: transparent;height: 93px;border-radius: 5px;width: 100%;position: absolute;top: 0;}
+			.main:after{content: "使用说明";display: inline-block;right: 0;width:20px;height: 95px;position: absolute;top: 0;background-color: #2DACB5;color: #fff;text-align: center;font-size: 12px;line-height: 14px;padding-top: 18px;}
+			@media screen and (max-width: 320px){
+				.main:before{width: 60px;}
+				.section:after,.section:before{left:50px;}
+			}
+		</style>
+	</head>
+	<body >
+		<div class="content" id="copyBT"  data-clipboard-text="517366278">
+			
+			<div class="weui-loadmore">
+			  <i class="weui-loading"></i>
+			  <span class="weui-loadmore__tips">正在加载</span>
+			</div>
+			<!-- <div class="weui-flex section align-center">
+				<div class="borders"></div>
 				<div class="main">
 					<p class="name">宁波第一医院</p>
 					<p class="time">有效期至:2018年10月19日</p>
 					<p class="number">NO:123456789</p>
 				</div>
+				<div class="remove">删除</div>
 			</div> -->
 		
 			<!-- <div class="section flex align-center">
 				
 			</div> -->
+			
 		</div>
-		
 		
 
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 		<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+		<script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.js"></script>
 		<script src="js/common.js"></script>
 		<script src="js/coupon.js"></script>
 	</body>

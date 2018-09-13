@@ -34,7 +34,7 @@ $(function(){
 		var catCd="";
 		if(catNm=="售货机"){
 			catCd="30050.10";
-		}else if(catNm=="售货机"){
+		}else if(catNm=="商品"){
 			catCd="30050.20"
 		}else{
 			$.toast("请选择投诉类型", "forbidden");

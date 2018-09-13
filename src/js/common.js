@@ -1,6 +1,12 @@
 var URL = "https://vending.jianlangcn.com/machine/";
+
 $(function() {
-	FastClick.attach(document.body);
+	 FastClick.attach(document.body);
+	 var clipboard = new Clipboard('#copyBT');
+	 
+	 clipboard.on('success', function(e) {
+			e.clearSelection();
+	});
 });
 
 var common = {
@@ -108,7 +114,7 @@ var common = {
 															'<div class="list-right flex1">'+
 																'<div class="number flex-box">'+
 																	'<p class="number-left">NO：'+_lists[i].vmSn+'</p>'+
-																	'<p class="number-right">'+_lists[i].dep+'</p>'+
+																	'<p class="number-right">'+_lists[i].depCd+'</p>'+
 																'</div>'+
 																'<p class="texts">'+_lists[i].addrDet+'</p>'+
 															'</div>'+
@@ -149,10 +155,25 @@ var common = {
 			}
 		})
 	},
+	deleteCoup:function(pk){
+		$.ajax({
+			type:'get',
+			url:URL+"jl/coup/wxdel?pks="+pk,
+			//url:"http://vending.jianlangcn.com:8100/machine/jl/coup/wxdel/?pks="+pk,
+			dataType:"json",
+			success:function(data){
+				console.log(data)
+				if(data.status==200){
+					location.reload();
+				}
+			}
+		})
+	},
 	coupList:function(jlCsrPk){
 		var loading = '<div class="weui-loadmore">'+
 										'<i class="weui-loading"></i>'+
 										'<span class="weui-loadmore__tips">正在加载</span>'+
+										
 									'</div>';
 		var nodata = '<div class="weui-loadmore weui-loadmore_line">'+
 										'<span class="weui-loadmore__tips">暂无数据</span>'+
@@ -170,11 +191,13 @@ var common = {
 						$(".content").html("")
 						for(var i=0;i<lists.length;i++){
 							var html = '<div class="weui-flex section align-center" data-pk="'+lists[i].jlCoupVo.jlCoupPk+'">'+
+											'<div class="borders"></div>'+
 											'<div class="main">'+
 												'<p class="name">'+lists[i].jlDrVo.jlHospNm+'</p>'+
 												'<p class="time">有效期至:'+lists[i].jlCoupVo.dateLimit+'</p>'+
 												'<p class="number">NO:'+lists[i].jlCoupVo.jlCoupPk+'</p>'+
 											'</div>'+
+											'<div class="remove">删除</div>'+
 										'</div>';
 							$(".content").append(html);
 						}
@@ -291,7 +314,7 @@ var common = {
 						for(var i=0;i<lists.length;i++){
 							var html = '<div class="list"  data-id="'+lists[i].jlVmPk+'">'+
 											'<div class="weui-flex">'+
-												'<div class="weui-flex__item initial-flex name" style="margin-right:30px">'+lists[i].dep+'</div>'+
+												'<div class="weui-flex__item initial-flex name" style="margin-right:30px">'+lists[i].depCd+'</div>'+
 												'<div class="weui-flex__item number">NO：'+lists[i].jlVmPk+'</div>'+
 											'</div>'+
 											'<div class="desc">'+lists[i].addrDet+'</div>'+
@@ -491,7 +514,20 @@ var common = {
 		if(data.addr){
 			$("#addr").html(data.addr)
 		}
+	},
+	copy:function(){
+		var zl = document.getElementById("zl");
+		zl.select()
+		document.execCommand("copy");
+	},
+	copyArticle:function(event){
+		var range = document.createRange();
+		range.selectNode(document.getElementById('copycontent'));
+
+		var selection = window.getSelection();
+		if(selection.rangeCount > 0) selection.removeAllRanges();
+		selection.addRange(range);
+		document.execCommand('copy');
+		alert("复制成功！");
 	}
 }
-
-

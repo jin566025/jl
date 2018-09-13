@@ -16,6 +16,9 @@ $(function(){
 		payarray = JSON.parse(payarray);
 		payarray.tradeType = "JSAPI";
 		payarray.openid = localStorage.getItem("openid");
+		var _totalFee = parseFloat($("#price1").text())*100
+		payarray.totalFee = _totalFee.toString() ;
+		console.log(payarray)
 		common.createOrder(payarray);
 
 	})
@@ -41,7 +44,9 @@ var init = {
 		// _params.totalFee = 100;
 		_totalFee = _totalFee*0.01;
 		$("#price2").html(_totalFee.toFixed(2))
-		$("#name").html(payarray.body)
+		var _namebody = payarray.body;
+		_namebody = decodeURI(_namebody);
+		$("#name").html(_namebody)
 		common.vmCoupon(_params)
 	},
 	getParams:function(){
