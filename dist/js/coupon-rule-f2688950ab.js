@@ -1,0 +1,1 @@
+$(function(){var n=window.location.href.split("=")[1];common.couponInfo(n),$(".btn").click(function(){window.location.href="scan.html"})});

@@ -1,0 +1,1 @@
+$(function(){var n=window.location.href.split("=")[1];common.couponInfo(n),$("#rule").click(function(){window.location.href="https://vending.jianlangcn.com/admin/view/dist/coupon-rule.html?pk="+n})});

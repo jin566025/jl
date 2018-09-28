@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body >
+	<div class="copy-font">
+		<div class="uuid-code" id="copycontent" style="font-size: 24px;">saidfh3is21111h</div>
+		<button class="btn-copy" id="copyBT" style="font-size: 24px;">复制</button>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    function copyArticle(event) {
+        const range = document.createRange();
+        range.selectNode(document.getElementById('copycontent'));
+
+        const selection = window.getSelection();
+        if(selection.rangeCount > 0) selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        alert("复制成功！");
+    }
+
+    document.getElementById('copyBT').addEventListener('click', copyArticle, false);
+</script>
+	</body>
+	
+</html>

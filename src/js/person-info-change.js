@@ -65,6 +65,7 @@ var init = {
 			var texts = decodeURI(params[1]);
 			$("#input-val").val(texts);
 			$("#input-val").data("type",type);
+			$(document).attr('title',texts);
 			if(type==3){
 				$("#input-val").attr("type","tel");
 			}

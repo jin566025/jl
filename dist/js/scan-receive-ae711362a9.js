@@ -1,1 +1,0 @@
-$(function(){var o=window.location.href.split("=")[1];console.log(o),common.coupList(o,function(){console.log("aaa")})});

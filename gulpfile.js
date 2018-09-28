@@ -9,7 +9,7 @@ var imagemin = require('gulp-imagemin');            //- 压缩图片
 var base64 = require('gulp-base64');                //- 把小图片转成base64字符串
 var q = require('q');                               //- 用于解决任务执行顺序的问题（一个任务执行完毕才执行另外一个任务）（暂时还没用到）
 var less = require('gulp-less');
-
+var gutil = require('gulp-util');
 /*清理文件*/
 gulp.task('clean',function () {                     //删除dist目录下的所有文件
     gulp.src('dist/*',{read:false})
@@ -34,14 +34,19 @@ gulp.task('less',function(callback){
 /*压缩js文件，并生成md5后缀的js文件*/
 gulp.task('compress-js',function (callback) {       //- 创建一个名为compress-js的task
     gulp.src(['src/js/**/*.js'])             //- 需要处理的js文件，放到一个字符串数组里
+		// .pipe(babel())
         .pipe(uglify())                             //- 压缩文件
+		.on('error', function(err) {
+			gutil.log(gutil.colors.red('[Error]'), err.toString())
+		})
         .pipe(rev())                                //- 文件名加MD5后缀
         .pipe(gulp.dest('dist/js'))                 //- 另存压缩后的文件
         .pipe(rev.manifest())                       //- 生成一个rev-manifest.json
         .pipe(gulp.dest('rev-js'))                  //- 将rev-manifest.json保存到 rev-js 目录内
         .on('end',function () {
             callback();
-        });
+        })
+		
 });
 
 /*压缩css文件，并生成md5后缀的css文件*/

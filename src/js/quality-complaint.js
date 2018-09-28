@@ -33,9 +33,9 @@ $(function(){
 		var catNm = $("#picker3").text();
 		var catCd="";
 		if(catNm=="售货机"){
-			catCd="30050.10";
+			catCd="30050.20";
 		}else if(catNm=="商品"){
-			catCd="30050.20"
+			catCd="30050.10"
 		}else{
 			$.toast("请选择投诉类型", "forbidden");
 			return false;
@@ -58,15 +58,29 @@ $(function(){
 		}
 		
 		var jlCsrPk = localStorage.getItem("jlCsrPk");
+		console.log(jlCsrPk)
 		var userInfo  =localStorage.getItem("userInfo");
 		userInfo = JSON.parse(userInfo);
 		
 		var params = {};
+		if(jlCsrPk=="undefined"){
+			$.alert({
+				title: '提示',
+				text: '请先完善个人信息',
+				onOK: function () {
+				window.location.href="person-info.html"
+				}
+			});
+			return false;
+			
+		}else{
+			params.jlCsrPk = jlCsrPk  
+		}
 		params.catCd = catCd;                                     //投诉分类编码
 		params.catNm = catNm;                                     //投诉分类
 		params.csrNkNm = userInfo.nickname                        //用户昵称
 		params.info = _info                                       //投诉建议内容
-		params.jlCsrPk = jlCsrPk                                  //用户pk
+		                                //用户pk
 		params.jlFbPk = ""                                       //投诉建议pk
 		params.jlVmPk = jlVmPk//售货机pk
 		params.statCd = "35000.110.10"                            //状态编码
