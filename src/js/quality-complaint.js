@@ -57,9 +57,9 @@ $(function(){
 			return false;
 		}
 		
-		var jlCsrPk = localStorage.getItem("jlCsrPk");
+		var jlCsrPk = sessionStorage.getItem("jlCsrPk");
 		console.log(jlCsrPk)
-		var userInfo  =localStorage.getItem("userInfo");
+		var userInfo  =sessionStorage.getItem("userInfo");
 		userInfo = JSON.parse(userInfo);
 		
 		var params = {};

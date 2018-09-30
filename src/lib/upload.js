@@ -72,7 +72,7 @@ function calculate_object_name(filename)
     {
         suffix = get_suffix(filename)
 		var my_timestamp=new Date().getTime();
-		var my_openid = localStorage.getItem("openid");
+		var my_openid = sessionStorage.getItem("openid");
 		var my_name = my_timestamp+"-"+my_openid
         g_object_name = g_dirname +my_name+ suffix
     }
@@ -139,7 +139,7 @@ var uploader = new plupload.Uploader({
 		FilesAdded: function(up, files) {
 			plupload.each(files, function(file) {
 // 				var timestamp=new Date().getTime();
-// 				var openid = localStorage.getItem("openid");
+// 				var openid = sessionStorage.getItem("openid");
 // 				var name = timestamp+"-"+openid
 // 				var reader  = new FileReader();
 // 				reader.onload = function(){

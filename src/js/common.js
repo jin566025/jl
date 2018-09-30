@@ -4,6 +4,18 @@ $(function() {
 });
 
 var common = {
+	deleteCoup:function(pk){
+		$.ajax({
+			type:"get",
+			url:URL+"jl/coup/del?pks="+pk,
+			success:function(res){
+				console.log(res)
+				if(res.status==200){
+					location.reload();
+				}
+			}
+		})
+	},
 	vmCoupon:function(params){
 		$.ajax({
 			type:"post",
@@ -11,14 +23,31 @@ var common = {
 			dataType:"json",
 			data:params,
 			success:function(res){
-				console.log(res)
 				if(res.status==200){
 					var payFee = res.data.payFee;
-					var price3 = params.totalFee-payFee;
-					price3 = price3*0.01;
-					payFee = payFee*0.01;
+					if(payFee){
+						var price3 = params.totalFee-payFee;
+						price3 = price3*0.01;
+						$("#price3").html(price3.toFixed(2))
+					}else{
+						payFee = params.totalFee*0.01;
+						$(".yh2").html("无可用优惠券");
+						$(".price2").hide()
+					}
 					$("#price1").html(payFee.toFixed(2));
-					$("#price3").html(price3.toFixed(2));
+					sessionStorage.setItem("coupSn",res.data.coupSn);
+				}else if(res.status==400){
+					var payFee = res.data.payFee;
+					if(payFee){
+						var price3 = params.totalFee-payFee;
+						price3 = price3*0.01;
+						$("#price3").html(price3.toFixed(2))
+					}else{
+						payFee = params.totalFee*0.01;
+						$(".yh2").html("无可用优惠券");
+						$(".price2").hide()
+					}
+					$("#price1").html(payFee.toFixed(2));
 					sessionStorage.setItem("coupSn",res.data.coupSn);
 				}
 			}
@@ -46,7 +75,7 @@ var common = {
 						function(res){
 							console.log(res)
 							if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-								
+								window.location.href="https://vending.jianlangcn.com/admin/view/dist/coupon.html"
 							}else{
 								
 							}
@@ -69,13 +98,17 @@ var common = {
 			async:false,
 			success:function(data){
 				if(data.status==200){
+					$("#dateLimit").html(data.data.dateLimit)
+					$("#dateLimit2").html(data.data.dateLimit);
+					$("#coupSn").html(data.data.coupSn);
 					$.ajax({
 						type:"get",
 						url:URL+"jl/dr/wxinfo/"+data.data.jlDrPk,
 						async:false,
 						dataType:"json",
 						success:function(res){
-							
+							$("#jlHospNm").html(res.data.jlHospNm);
+							$("#jlHospNm2").html(res.data.jlHospNm);
 							var _params = {"w":[{"k":"jlHospPk","v":res.data.jlHospPk,"m":"LK"}],"o":[],"p":{"n":1,"s":10}};
 							_params = JSON.stringify(_params);
 							_params = encodeURI(_params);
@@ -86,12 +119,6 @@ var common = {
 									async:false,
 									dataType:"json",
 									success:function(res2){
-										$("#jlHospNm").html(res.data.jlHospNm);
-										$("#dateLimit").html(data.data.dateLimit)
-										
-										$("#jlHospNm2").html(res.data.jlHospNm);
-										$("#dateLimit2").html(data.data.dateLimit);
-										$("#coupSn").html(data.data.coupSn);
 										var _lists = res2.data.items;
 										var _str = "";
 										for(var i=0;i<_lists.length;i++){
@@ -100,7 +127,6 @@ var common = {
 											}else{
 												_str+";"+_lists[i].addrDet;
 											}
-											
 											var html = '<div class="list flex-box">'+
 															'<div class="list-left">'+
 																'<div class="circle"></div>'+
@@ -149,6 +175,7 @@ var common = {
 			}
 		})
 	},
+
 	coupList:function(jlCsrPk){
 		var loading = '<div class="weui-loadmore">'+
 										'<i class="weui-loading"></i>'+
@@ -165,17 +192,36 @@ var common = {
 			url:URL+"jl/coup/wxcoupList?jlCsrPk="+jlCsrPk,
 			dataType:"json",
 			success:function(data){
+				console.log(data)
 				if(data.status==200){
 					var lists = data.data;
-					if(lists){
+					if(lists.length>0){
 						$(".content").html("")
+						var jlHospNm,dateLimit,coupSn,jlCoupPk;
+						
 						for(var i=0;i<lists.length;i++){
-							var html = '<div class="weui-flex section align-center" data-pk="'+lists[i].jlCoupVo.jlCoupPk+'">'+
+							
+							if(lists[i].jlDrVo){
+								jlHospNm = lists[i].jlDrVo.jlHospNm;
+							}else{
+								jlHospNm = "没有"
+							}
+							if(lists[i].jlCoupVo){
+								dateLimit = lists[i].jlCoupVo.dateLimit;
+								coupSn=lists[i].jlCoupVo.coupSn;
+								jlCoupPk = lists[i].jlCoupVo.jlCoupPk
+							}else{
+								dateLimit="没有";
+								coupSn="没有";
+								jlCoupPk="没有"
+							}
+							
+							var html = '<div class="weui-flex section align-center" data-pk="'+jlCoupPk+'">'+
 											'<div class="borders"></div>'+
 											'<div class="main">'+
-												'<p class="name">'+lists[i].jlDrVo.jlHospNm+'</p>'+
-												'<p class="time">有效期至:'+lists[i].jlCoupVo.dateLimit+'</p>'+
-												'<p class="number">NO:'+lists[i].jlCoupVo.coupSn+'</p>'+
+												'<p class="name">'+jlHospNm+'</p>'+
+												'<p class="time">有效期至:'+dateLimit+'</p>'+
+												'<p class="number">NO:'+coupSn+'</p>'+
 											'</div>'+
 											'<div class="remove">删除</div>'+
 										'</div>';
@@ -340,7 +386,7 @@ var common = {
 	
 	
 	edit:function(URL,params){
-		var _param = localStorage.getItem("params");
+		var _param = sessionStorage.getItem("params");
 		_param = JSON.parse(_param);
 		params = $.extend(_param,params);
 		params = JSON.stringify(params)
@@ -354,7 +400,7 @@ var common = {
 				console.log(data)
 				if(data.status==200){
 					$.toast("修改成功");
-					var userInfo = localStorage.getItem("userInfo");
+					var userInfo = sessionStorage.getItem("userInfo");
 					userInfo = JSON.parse(userInfo);
 					params = JSON.parse(params);
 
@@ -363,11 +409,11 @@ var common = {
 					userInfo = JSON.stringify(userInfo);
 					params = JSON.stringify(params);
 					
-					localStorage.setItem("userInfo",userInfo);
-					localStorage.setItem("params",params);
+					sessionStorage.setItem("userInfo",userInfo);
+					sessionStorage.setItem("params",params);
 					
-					localStorage.removeItem("hasLogin");
-					localStorage.removeItem("openid")
+					sessionStorage.removeItem("hasLogin");
+					sessionStorage.removeItem("openid")
 					setTimeout(function(){
 						window.location.href = "person-info.html"
 					},600)
@@ -377,35 +423,35 @@ var common = {
 	},
 
 	getOpenid:function(url){
-		var openid = localStorage.getItem("openid");
+		var openid = sessionStorage.getItem("openid");
 		if(openid){
 			
 		}else{
 			var redirect_uri = encodeURI(url);
 			var appid = "wxfad716c770341d1d";
-			var hasLogin = localStorage.getItem("hasLogin");
+			var hasLogin = sessionStorage.getItem("hasLogin");
 			
 			
 			if(hasLogin){
 
 			}else{
-				localStorage.setItem("hasLogin",true);
+				sessionStorage.setItem("hasLogin",true);
 				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 			}
 		}
 	},
 	getCode:function(callback){
-		var openid = localStorage.getItem("openid");
+		var openid = sessionStorage.getItem("openid");
 		var that = this;
 		
 		if(openid){
-			var userInfo = localStorage.getItem("userInfo");
+			var userInfo = sessionStorage.getItem("userInfo");
 			userInfo = JSON.parse(userInfo);
 			that.showData(userInfo)
 		}else{
 			var _url = window.location.href.split("code=")[1];
 			var code = _url.split("&")[0];
-			localStorage.setItem("code",code);
+			sessionStorage.setItem("code",code);
 			
 			$.ajax({
 				type:"get",
@@ -422,7 +468,7 @@ var common = {
 						var userinfo = data.data.userinfo;
 						userInfo = $.extend(userInfo,userinfo);
 						console.log(userInfo)
-						localStorage.setItem("openid",userInfo.openId);
+						sessionStorage.setItem("openid",userInfo.openId);
 						var params = {};
 						params.openid = userInfo.openId;
 						
@@ -432,19 +478,19 @@ var common = {
 						params.head_url = userInfo.headImgUrl;
 						params.sex = userInfo.sexDesc;
 						params = JSON.stringify(params);
-						localStorage.setItem("params",params);
-						localStorage.setItem("jlCsrPk",userInfo.jlCsrPk)
+						sessionStorage.setItem("params",params);
+						sessionStorage.setItem("jlCsrPk",userInfo.jlCsrPk)
 						that.showData(userInfo);
 						userInfo = JSON.stringify(userInfo);
-						localStorage.setItem("userInfo",userInfo);
-						localStorage.setItem("token",data.data.token);
+						sessionStorage.setItem("userInfo",userInfo);
+						sessionStorage.setItem("token",data.data.token);
 						//that.set("machine-token",data.data.token,30)
 						if(callback){
 							callback()
 						}
 						
 					}else if(data.status==400){
-						localStorage.removeItem("hasLogin");
+						sessionStorage.removeItem("hasLogin");
 						location.reload();
 					}
 					

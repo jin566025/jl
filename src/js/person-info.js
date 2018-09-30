@@ -28,7 +28,7 @@ $(function(){
 			var val = e.value[0];
 			$("#picker2").html(val);
 			
-			var openid = localStorage.getItem("openid");
+			var openid = sessionStorage.getItem("openid");
 			var age = val;
 			var json = {};
 			json.openid = openid;

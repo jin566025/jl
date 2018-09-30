@@ -15,9 +15,11 @@ $(function(){
 		var payarray = sessionStorage.getItem("payarray");
 		payarray = JSON.parse(payarray);
 		payarray.tradeType = "JSAPI";
-		payarray.openid = localStorage.getItem("openid");
-		var _totalFee = parseFloat($("#price1").text())*100
-		payarray.totalFee = _totalFee.toString() ;
+		payarray.openid = sessionStorage.getItem("openid");
+// 		var _totalFee = parseFloat($("#price1").text())*100;
+// 		console.log(parseFloat($("#price1").text()))
+// 		console.log(_totalFee)
+// 		payarray.totalFee = _totalFee.toString() ;
 		console.log(payarray)
 		common.createOrder(payarray);
 
@@ -25,8 +27,8 @@ $(function(){
 })
 
 function goodbye(){
-	localStorage.removeItem("hasLogin");
-	localStorage.removeItem("openid");
+	sessionStorage.removeItem("hasLogin");
+	sessionStorage.removeItem("openid");
 	sessionStorage.removeItem("hasGet");
 }
 
@@ -35,7 +37,7 @@ var init = {
 		var payarray = sessionStorage.getItem("payarray");
 		payarray = JSON.parse(payarray);
 		var _params = {};
-		_params.openid = localStorage.getItem("openid");
+		_params.openid = sessionStorage.getItem("openid");
 		_params.vmSn = payarray.vmSn;
 		_params.openid ="oW4oN1JNZuOrV_gvgTPRySDo0Lfo";
 		_params.vmSn = "1223344556";

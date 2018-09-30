@@ -7,7 +7,7 @@ $(function(){
 	
 	$(".save").click(function(){
 		var val = $("#input-val").val();
-		var openid = localStorage.getItem("openid");
+		var openid = sessionStorage.getItem("openid");
 		var type = $("#input-val").data("type");
 		var params = {};
 
@@ -37,7 +37,7 @@ $(function(){
 // 			success:function(data){
 // 				console.log(data)
 // 				if(data.status==200){
-// 					var userInfo = localStorage.getItem("userInfo");
+// 					var userInfo = sessionStorage.getItem("userInfo");
 // 					userInfo = JSON.parse(userInfo);
 // 					if(type==1){
 // 						userInfo.name = val
@@ -47,7 +47,7 @@ $(function(){
 // 						userInfo.phone = val
 // 					}
 // 					userInfo = JSON.stringify(userInfo)
-// 					localStorage.setItem("userInfo",userInfo)
+// 					sessionStorage.setItem("userInfo",userInfo)
 // 				}
 // 			}
 // 		})

@@ -16,9 +16,11 @@ $(function(){
 		var Etouch = e.touches[0];
 		endX = Etouch.clientX;
 		if(startX-endX>20){
-			$(this).find(".remove").animate({right:"0px"},100)
+			// $(this).find(".remove").animate({right:"0px"},100)
+			$(this).find(".remove").removeClass("my-translate-right").addClass("my-translate-left")
 		}else if(startX-endX<-20){
-			$(this).find(".remove").animate({right:"-60px"},100)
+			// $(this).find(".remove").animate({right:"-60px"},100)
+			$(this).find(".remove").removeClass("my-translate-left").addClass("my-translate-right")
 		}
 	})
 	$(".content").on("click",".remove",function(event){
@@ -35,18 +37,18 @@ $(function(){
 		
 	})
 	setTimeout(function(){
-		var jlCsrPk = localStorage.getItem("jlCsrPk");
-		if(jlCsrPk){
-			common.coupList(jlCsrPk,"");
-		}else{
+		var jlCsrPk = sessionStorage.getItem("jlCsrPk");
+		console.log(jlCsrPk)
+		if(!jlCsrPk || jlCsrPk=="undefined"){
 			$.alert({
-			  title: '提示',
-			  text: '请先完善个人信息',
-			  onOK: function () {
+				title: '提示',
+				text: '请先完善个人信息',
+				onOK: function () {
 				window.location.href="person-info.html"
-			  }
+				}
 			});
-			
+		}else{
+			common.coupList(jlCsrPk,"");
 		}
 	},1000)
 })
